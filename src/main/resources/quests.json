@@ -1,0 +1,311 @@
+[
+  {
+    "questId": "cow_hunter",
+    "type": "KILL",
+    "target": "COW",
+    "requiredAmount": 10,
+    "rewardType": "COMMAND",
+    "rewards": [
+      "give %player% minecraft:cooked_beef 5"
+    ]
+  },
+  {
+    "questId": "lumberjack_novice",
+    "type": "MINE",
+    "target": "OAK_LOG",
+    "requiredAmount": 32,
+    "rewardType": "COMMAND",
+    "rewards": [
+      "give %player% minecraft:apple 2"
+    ]
+  },
+  {
+    "questId": "coal_miner",
+    "type": "MINE",
+    "target": "COAL_ORE",
+    "requiredAmount": 20,
+    "rewardType": "COMMAND",
+    "rewards": [
+      "give %player% minecraft:torch 16"
+    ]
+  },
+  {
+    "questId": "spider_exterminator",
+    "type": "KILL",
+    "target": "SPIDER",
+    "requiredAmount": 10,
+    "rewardType": "COMMAND",
+    "rewards": [
+      "give %player% minecraft:string 4",
+      "give %player% minecraft:cobweb 1"
+    ]
+  },
+  {
+    "questId": "stone_gatherer",
+    "type": "MINE",
+    "target": "STONE",
+    "requiredAmount": 64,
+    "rewardType": "COMMAND",
+    "rewards": [
+      "give %player% minecraft:iron_ingot 1"
+    ]
+  },
+  {
+    "questId": "zombie_slayer_easy",
+    "type": "KILL",
+    "target": "ZOMBIE",
+    "requiredAmount": 15,
+    "rewardType": "COMMAND",
+    "rewards": [
+      "give %player% minecraft:iron_nugget 5"
+    ]
+  },
+  {
+    "questId": "iron_miner",
+    "type": "MINE",
+    "target": "IRON_ORE",
+    "requiredAmount": 16,
+    "rewardType": "COMMAND",
+    "rewards": [
+      "give %player% minecraft:iron_ingot 3"
+    ]
+  },
+  {
+    "questId": "skeleton_sniper",
+    "type": "KILL",
+    "target": "SKELETON",
+    "requiredAmount": 15,
+    "rewardType": "COMMAND",
+    "rewards": [
+      "give %player% minecraft:arrow 10"
+    ]
+  },
+  {
+    "questId": "pig_butcher",
+    "type": "KILL",
+    "target": "PIG",
+    "requiredAmount": 12,
+    "rewardType": "COMMAND",
+    "rewards": [
+      "give %player% minecraft:cooked_porkchop 6"
+    ]
+  },
+  {
+    "questId": "sand_shoveler",
+    "type": "MINE",
+    "target": "SAND",
+    "requiredAmount": 128,
+    "rewardType": "COMMAND",
+    "rewards": [
+      "give %player% minecraft:glass 16"
+    ]
+  },
+  {
+    "questId": "creeper_control",
+    "type": "KILL",
+    "target": "CREEPER",
+    "requiredAmount": 15,
+    "rewardType": "COMMAND",
+    "rewards": [
+      "give %player% minecraft:tnt 2"
+    ]
+  },
+  {
+    "questId": "gold_rush",
+    "type": "MINE",
+    "target": "GOLD_ORE",
+    "requiredAmount": 32,
+    "rewardType": "COMMAND",
+    "rewards": [
+      "give %player% minecraft:gold_ingot 5"
+    ]
+  },
+  {
+    "questId": "enderman_hunter",
+    "type": "KILL",
+    "target": "ENDERMAN",
+    "requiredAmount": 10,
+    "rewardType": "COMMAND",
+    "rewards": [
+      "give %player% minecraft:ender_pearl 2"
+    ]
+  },
+  {
+    "questId": "lapis_collector",
+    "type": "MINE",
+    "target": "LAPIS_ORE",
+    "requiredAmount": 32,
+    "rewardType": "COMMAND",
+    "rewards": [
+      "give %player% minecraft:experience_bottle 4"
+    ]
+  },
+  {
+    "questId": "redstone_engineer",
+    "type": "MINE",
+    "target": "REDSTONE_ORE",
+    "requiredAmount": 64,
+    "rewardType": "COMMAND",
+    "rewards": [
+      "give %player% minecraft:repeater 2",
+      "give %player% minecraft:comparator 1"
+    ]
+  },
+  {
+    "questId": "slime_squasher",
+    "type": "KILL",
+    "target": "SLIME",
+    "requiredAmount": 20,
+    "rewardType": "COMMAND",
+    "rewards": [
+      "give %player% minecraft:slime_ball 5",
+      "give %player% minecraft:lead 1"
+    ]
+  },
+  {
+    "questId": "nether_navigator",
+    "type": "MINE",
+    "target": "NETHERRACK",
+    "requiredAmount": 256,
+    "rewardType": "COMMAND",
+    "rewards": [
+      "give %player% minecraft:quartz 16"
+    ]
+  },
+  {
+    "questId": "blaze_battler",
+    "type": "KILL",
+    "target": "BLAZE",
+    "requiredAmount": 15,
+    "rewardType": "COMMAND",
+    "rewards": [
+      "give %player% minecraft:blaze_rod 3"
+    ]
+  },
+  {
+    "questId": "magma_cube_crusher",
+    "type": "KILL",
+    "target": "MAGMA_CUBE",
+    "requiredAmount": 15,
+    "rewardType": "COMMAND",
+    "rewards": [
+      "give %player% minecraft:magma_cream 4"
+    ]
+  },
+  {
+    "questId": "obsidian_miner",
+    "type": "MINE",
+    "target": "OBSIDIAN",
+    "requiredAmount": 16,
+    "rewardType": "COMMAND",
+    "rewards": [
+      "give %player% minecraft:diamond 1"
+    ]
+  },
+  {
+    "questId": "diamond_miner",
+    "type": "MINE",
+    "target": "DIAMOND_ORE",
+    "requiredAmount": 20,
+    "rewardType": "COMMAND",
+    "rewards": [
+      "give %player% minecraft:emerald 1",
+      "give %player% minecraft:diamond 2"
+    ]
+  },
+  {
+    "questId": "zombie_horde_survivor",
+    "type": "KILL",
+    "target": "ZOMBIE",
+    "requiredAmount": 100,
+    "rewardType": "COMMAND",
+    "rewards": [
+      "give %player% minecraft:diamond_sword 1"
+    ]
+  },
+  {
+    "questId": "wither_skeleton_assassin",
+    "type": "KILL",
+    "target": "WITHER_SKELETON",
+    "requiredAmount": 25,
+    "rewardType": "COMMAND",
+    "rewards": [
+      "give %player% minecraft:wither_skeleton_skull 1"
+    ]
+  },
+  {
+    "questId": "ancient_debris_digger",
+    "type": "MINE",
+    "target": "ANCIENT_DEBRIS",
+    "requiredAmount": 12,
+    "rewardType": "COMMAND",
+    "rewards": [
+      "give %player% minecraft:netherite_scrap 2"
+    ]
+  },
+  {
+    "questId": "phantom_menace",
+    "type": "KILL",
+    "target": "PHANTOM",
+    "requiredAmount": 20,
+    "rewardType": "COMMAND",
+    "rewards": [
+      "give %player% minecraft:phantom_membrane 5",
+      "give %player% minecraft:slow_falling_potion 1"
+    ]
+  },
+  {
+    "questId": "ravager_rider",
+    "type": "KILL",
+    "target": "RAVAGER",
+    "requiredAmount": 5,
+    "rewardType": "COMMAND",
+    "rewards": [
+      "give %player% minecraft:saddle 1",
+      "give %player% minecraft:emerald_block 1"
+    ]
+  },
+  {
+    "questId": "obsidian_obliteration",
+    "type": "MINE",
+    "target": "OBSIDIAN",
+    "requiredAmount": 128,
+    "rewardType": "COMMAND",
+    "rewards": [
+      "give %player% minecraft:netherite_pickaxe 1"
+    ]
+  },
+  {
+    "questId": "dragon_slayer",
+    "type": "KILL",
+    "target": "ENDER_DRAGON",
+    "requiredAmount": 1,
+    "rewardType": "COMMAND",
+    "rewards": [
+      "give %player% minecraft:elytra 1",
+      "give %player% minecraft:firework_rocket 64"
+    ]
+  },
+  {
+    "questId": "wither_slayer",
+    "type": "KILL",
+    "target": "WITHER",
+    "requiredAmount": 1,
+    "rewardType": "COMMAND",
+    "rewards": [
+      "give %player% minecraft:nether_star 1",
+      "give %player% minecraft:diamond_block 2"
+    ]
+  },
+  {
+    "questId": "enderman_eradicator",
+    "type": "KILL",
+    "target": "ENDERMAN",
+    "requiredAmount": 150,
+    "rewardType": "COMMAND",
+    "rewards": [
+      "give %player% minecraft:enchanted_golden_apple 1",
+      "give %player% minecraft:shulker_box 1"
+    ]
+  }
+]

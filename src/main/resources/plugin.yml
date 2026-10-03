@@ -1,0 +1,9 @@
+name: Clans
+main: com.untistore.clans.Main
+api-version: 26.2
+author: Jacksmf
+version: 1.0
+commands:
+  clan:
+    description: The command to do anything for /clans
+    aliases: [c, clans]
