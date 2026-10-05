@@ -4,8 +4,10 @@ import com.untistore.clans.managers.ClanManager;
 import com.untistore.clans.models.Clan;
 import com.untistore.clans.models.ClanPlayer;
 import com.untistore.clans.models.Quest;
+import com.untistore.clans.utils.ItemStackBuilder;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -60,23 +62,25 @@ public class QuestListener implements Listener {
         ClanPlayer clanPlayer = clanManager.getClanPlayer(player.getUniqueId());
         if (clanPlayer == null) return;
 
-        System.out.println("Progressing quest for " + player.getName() + ": " + type + " " + targetName);
+        for (Quest q : quests) handleQuest(player, type, targetName, q, clanPlayer);
+    }
 
-        for (Quest q : quests) {
-            String formattedTarget = targetName.replace("DEEPSLATE_", "");
+    private void handleQuest(Player player, String type, String targetName, Quest q, ClanPlayer clanPlayer) {
+        String formattedTarget = targetName.replace("DEEPSLATE_", "");
 
-            if (!q.getType().contains(type)) continue;
-            if (!q.getTarget().equalsIgnoreCase(formattedTarget)) continue;
-            if (clanPlayer.hasCompletedQuest(q.getQuestId())) continue;
+        if (!q.getType().contains(type)) return;
+        if (!q.getTarget().equalsIgnoreCase(formattedTarget)) return;
+        if (clanPlayer.hasCompletedQuest(q.getQuestId())) return;
 
-            System.out.println("Quest " + q.getQuestId() + " progress: " + clanPlayer.getQuestProgress(q.getQuestId()) + " requirement " + q.getRequiredAmount());
-            clanPlayer.incrementQuestProgress(q.getQuestId(), 1);
-            if (clanPlayer.getQuestProgress(q.getQuestId()) >= q.getRequiredAmount()) {
-                clanPlayer.completeQuest(q.getQuestId());
+        clanPlayer.incrementQuestProgress(q.getQuestId(), 1);
+        if (clanPlayer.getQuestProgress(q.getQuestId()) >= q.getRequiredAmount()) {
+            Clan clan = clanManager.getClanByPlayer(player.getUniqueId());
+            clanPlayer.completeQuest(q.getQuestId());
+            clan.addExperience(q.getRequiredAmount() / 2);
 
-                handleRewards(q, player);
-                player.sendMessage(Component.text("Quest completed!"));
-            }
+            handleRewards(q, player);
+            String quest = q.getDescription() == null ? q.getQuestId() : q.getDescription();
+            player.sendMessage(Component.text("Quest " + quest + " completed!"));
         }
     }
 
@@ -89,6 +93,14 @@ public class QuestListener implements Listener {
                 for (String cmd : quest.getRewards()) {
                     String format = cmd.replaceAll("%player%", player.getName());
                     Bukkit.dispatchCommand(Bukkit.getConsoleSender(), format);
+                }
+            }
+            case "item" -> {
+                for (String item : quest.getRewards()) {
+                    Material mat =  Material.matchMaterial(item);
+                    if (mat == null) continue;
+
+                    player.getInventory().addItem(ItemStackBuilder.buildItem(mat, mat.data.getName(), List.of()));
                 }
             }
             default -> {}

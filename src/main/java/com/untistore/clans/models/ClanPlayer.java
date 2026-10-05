@@ -1,5 +1,7 @@
 package com.untistore.clans.models;
 
+import org.bukkit.Bukkit;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -8,7 +10,7 @@ import java.util.UUID;
 
 public class ClanPlayer {
     private UUID playerUUID;
-    private String clanId;
+    private int clanId;
     private Role role;
 
     private Map<String, Integer> questProgress = new HashMap<>();
@@ -21,8 +23,8 @@ public class ClanPlayer {
 
     public UUID getPlayerUUID() { return playerUUID; }
 
-    public String getClanId() { return clanId; }
-    public void setClanId(String clanId) { this.clanId = clanId; }
+    public int getClanId() { return clanId; }
+    public void setClanId(int clanId) { this.clanId = clanId; }
 
     public Role getRole() { return role; }
     public void setRole(Role role) { this.role = role; }
@@ -44,5 +46,9 @@ public class ClanPlayer {
 
     public void completeQuest(String questId) {
         questsCompleted.add(questId);
+    }
+
+    public static String getName(UUID uuid) {
+        return Bukkit.getOfflinePlayer(uuid).getName();
     }
 }

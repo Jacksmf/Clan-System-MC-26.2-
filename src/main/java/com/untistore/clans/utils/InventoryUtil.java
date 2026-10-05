@@ -8,10 +8,7 @@ public class InventoryUtil {
     public static void fillInventory(Inventory inv, ItemStack stack) {
         int slots = inv.getSize();
         for (int i = 0; i < slots; i++) {
-            ItemStack item = inv.getItem(i);
-            if (item != null) {
-                inv.setItem(i, stack);
-            }
+            inv.setItem(i, stack);
         }
 
     }

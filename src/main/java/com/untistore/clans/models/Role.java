@@ -8,7 +8,7 @@ public enum Role {
     ;
 
     public boolean isAtLeast(Role role) {
-        return this.ordinal() >= role.ordinal();
+        return this.ordinal() <= role.ordinal();
     }
 
     public Role getNext() {

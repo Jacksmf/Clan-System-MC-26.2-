@@ -1,6 +1,5 @@
 package com.untistore.clans.inventorys.clangui;
 
-import com.untistore.clans.inventorys.IInventory;
 import com.untistore.clans.managers.ClanManager;
 import com.untistore.clans.managers.QuestManager;
 import com.untistore.clans.models.Clan;
@@ -12,20 +11,26 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class ClanMenu implements IInventory {
-    private Inventory inv;
+public class ClanMenu extends ClanGUI {
     private ClanManager clanManager;
     private QuestManager questManager;
+
     private Player player;
 
-    public ClanMenu(ClanManager clanManager, QuestManager questManager) {
+    public ClanMenu(Player player, ClanManager clanManager, QuestManager questManager) {
+        super(player, 9*3, "");
+
+        this.player = player;
         this.clanManager = clanManager;
         this.questManager = questManager;
+
+        create();
     }
 
     public void create() {
@@ -35,18 +40,16 @@ public class ClanMenu implements IInventory {
             return;
         }
 
-        inv = Bukkit.createInventory(this, 9*3, Component.text("[" + clan.getName() + "] - Main Menu"));
-
-        InventoryUtil.fillInventory(inv, ItemStackBuilder.buildItem(Material.GRAY_STAINED_GLASS_PANE, " ", List.of()));
-        inv.setItem(4, ItemStackBuilder.buildSkullItem(player.getName(), "&f" + clan.getName(), List.of(
-                ComponentUtil.create("&fLevel" + clan.getLevel() + " (progress/required)", true),
+        InventoryUtil.fillInventory(inventory, ItemStackBuilder.buildItem(Material.GRAY_STAINED_GLASS_PANE, " ", List.of()));
+        inventory.setItem(4, ItemStackBuilder.buildSkullItem(player.getName(), "&f" + clan.getName(), List.of(
+                ComponentUtil.create("&fLevel " + clan.getLevel() + " (" + clan.getLevelProgress() + ")", true),
                 ComponentUtil.create("&fMembers " + clan.getMembers().size(), true)
         )));
-        inv.setItem(11, ItemStackBuilder.buildItem(Material.WRITABLE_BOOK, "&fQuests", List.of(
+        inventory.setItem(11, ItemStackBuilder.buildItem(Material.WRITABLE_BOOK, "&fQuests", List.of(
                 ComponentUtil.create("&f[Click] to view the clans quests", true),
                 ComponentUtil.create("&f*Resets once every 24hrs*", true)
         )));
-        inv.setItem(15, ItemStackBuilder.buildSkullItem(player.getName(), "&fMembers", List.of(
+        inventory.setItem(15, ItemStackBuilder.buildSkullItem(player.getName(), "&fMembers", List.of(
                 ComponentUtil.create("&f[Click] to view the clans members", true)
         )));
     }
@@ -56,28 +59,30 @@ public class ClanMenu implements IInventory {
         e.setCancelled(true);
 
         int slot  = e.getRawSlot();
-        System.out.println("Slot " + slot + " clicked!");
         switch (slot) {
             case 11 -> {
-                new ClanQuestMenu(clanManager, questManager).showPlayer(player);
+                new ClanQuestMenu(player, clanManager, questManager, this).showPlayer(player);
+            }
+            case 15 -> {
+                new ClanMemberMenu(player, clanManager, this).showPlayer(player);
             }
         }
     }
 
     @Override
-    public void onClose(InventoryClickEvent e) {
+    public void onOpen(InventoryOpenEvent e) {
+        Clan clan =  clanManager.getClanByPlayer(player.getUniqueId());
+        if (clan == null) {
+            e.getInventory().close();
+            return;
+        }
 
-    }
-
-    @Override
-    public @NotNull Inventory getInventory() {
-        return inv;
+        e.titleOverride(ComponentUtil.create("&f[" + clan.getName() + "] - Main Menu", true));
     }
 
     @Override
     public void showPlayer(Player player) {
-        this.player = player;
         create();
-        player.openInventory(inv);
+        player.openInventory(inventory);
     }
 }

@@ -1,7 +1,9 @@
 package com.untistore.clans.commands;
 
 import com.untistore.clans.inventorys.clangui.ClanMenu;
+import com.untistore.clans.inventorys.clangui.ClanQuestMenu;
 import com.untistore.clans.managers.ClanManager;
+import com.untistore.clans.managers.QuestManager;
 import com.untistore.clans.models.Clan;
 import com.untistore.clans.models.ClanPlayer;
 import com.untistore.clans.models.Quest;
@@ -16,11 +18,12 @@ import java.util.List;
 
 public class ClanCommand implements CommandExecutor {
     private ClanManager clanManager;
-    private ClanMenu menu;
+    private QuestManager questManager;
 
-    public ClanCommand(ClanManager clanManager, ClanMenu menu) {
+
+    public ClanCommand(ClanManager clanManager, QuestManager questManager) {
         this.clanManager = clanManager;
-        this.menu = menu;
+        this.questManager = questManager;
     }
 
     @Override
@@ -30,6 +33,7 @@ public class ClanCommand implements CommandExecutor {
             return true;
         }
 
+
         if (args.length == 0) {
             Clan clan = clanManager.getClanByPlayer(player.getUniqueId());
             if (clan == null) {
@@ -37,15 +41,15 @@ public class ClanCommand implements CommandExecutor {
                 return true;
             }
 
-            menu.showPlayer(player);
+            new ClanMenu(player, clanManager, questManager).showPlayer(player);
             return true;
         }
 
         String subCommand = args[0];
-        switch (subCommand) {
+        switch (subCommand.toLowerCase()) {
             case "create" -> handleCreate(player, args);
             case "home" -> handleHome(player);
-            case "setHome" -> handleSetHome(player);
+            case "sethome" -> handleSetHome(player);
             case "top" -> handleTop(player);
             case "quests" -> handleQuests(player);
             case "war" -> handleWar(player, args);
@@ -101,7 +105,7 @@ public class ClanCommand implements CommandExecutor {
             return;
         }
 
-        if (clan.getOwner().equals(player.getUniqueId())) {
+        if (!clan.getOwner().equals(player.getUniqueId())) {
             player.sendMessage(Component.text("You're not the owner of the clan"));
             return;
         }
